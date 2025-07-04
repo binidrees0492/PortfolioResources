@@ -464,7 +464,7 @@ const projects = [
             "https://picsum.photos/1200/900?random=321"
         ],
         "tags": [
-            "Google Apps Script",
+            "Google Quentin",
             "SQL",
             "Customer Support",
             "Automation"
@@ -652,7 +652,7 @@ const projects = [
         "description": "A tool for migrating MS Access databases to Excel and Power BI, with automated data mapping and visualization.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
-            "https://picsum.photos/1200/900 | random=328",
+            "https://picsum.photos/1200/900?random=328",
             "https://picsum.photos/1200/900?random=329"
         ],
         "tags": [
@@ -720,8 +720,8 @@ const projects = [
         ]
     },
     {
-        "title": "SupplyChain Optimizer",
-        "description": "A Python-based tool for optimizing supply chain logistics, with demand forecasting and route planning features.",
+        "title": "SalesTrend Predictor",
+        "description": "A Python-based tool for forecasting sales trends using time-series analysis and visualization in interactive dashboards.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=400",
@@ -729,23 +729,23 @@ const projects = [
         ],
         "tags": [
             "Python",
-            "Optimization",
-            "Supply Chain",
-            "Analytics"
+            "Time Series",
+            "Analytics",
+            "Visualization"
         ],
         "color": "blue",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
-                "client": "Logistics Pro",
-                "text": "Reduced logistics costs by 20%."
+                "client": "Retail Analytics Ltd.",
+                "text": "Accurate sales forecasts improved our planning."
             }
         ]
     },
     {
-        "title": "CustomerInsight CRM Dashboard",
-        "description": "A Flask-based CRM dashboard for tracking customer interactions, sales pipelines, and performance metrics.",
+        "title": "CustomerSegment Analyzer",
+        "description": "A Flask-based tool for segmenting customers based on purchasing behavior, with clustering algorithms and visual reports.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=401",
@@ -754,22 +754,22 @@ const projects = [
         "tags": [
             "Flask",
             "SQL",
-            "CRM",
-            "Dashboard"
+            "Clustering",
+            "Analytics"
         ],
         "color": "red",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
-                "client": "SalesForce Inc.",
-                "text": "Enhanced our customer relationship management."
+                "client": "Market Insights Co.",
+                "text": "Enhanced our customer targeting strategy."
             }
         ]
     },
     {
-        "title": "FraudDetect Transaction Monitor",
-        "description": "A Python-based tool for detecting fraudulent transactions using machine learning and real-time data analysis.",
+        "title": "FraudRisk Detector",
+        "description": "A Python-based tool using machine learning to analyze transaction data and flag potential fraud with high accuracy.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=402",
@@ -782,42 +782,42 @@ const projects = [
             "Analytics"
         ],
         "color": "yellow",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
-                "client": "SecurePay Ltd.",
-                "text": "Improved fraud detection accuracy."
+                "client": "SecurePay Solutions",
+                "text": "Reduced fraudulent transactions significantly."
             }
         ]
     },
     {
-        "title": "EventSync Scheduler",
-        "description": "A web-based event scheduling tool with automated reminders, attendee management, and calendar integration.",
+        "title": "InventoryDemand Forecaster",
+        "description": "A tool for predicting inventory demand using statistical models, with Excel-based visualizations for stock planning.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=403",
             "https://picsum.photos/1200/900?random=404"
         ],
         "tags": [
-            "Flask",
-            "SQL",
-            "Event Management",
-            "Automation"
+            "Python",
+            "Excel",
+            "Forecasting",
+            "Analytics"
         ],
         "color": "blue",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
-                "client": "EventPro Organizers",
-                "text": "Streamlined our event planning process."
+                "client": "SupplyChain Pro",
+                "text": "Optimized our inventory management."
             }
         ]
     },
     {
-        "title": "EnergyTrack Consumption Analyzer",
-        "description": "A tool for analyzing energy consumption data from IoT devices, with predictive maintenance and cost-saving insights.",
+        "title": "EnergyUse Analyzer",
+        "description": "A Python-based tool for analyzing energy consumption patterns from IoT data, with predictive cost-saving insights.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=404",
@@ -827,21 +827,21 @@ const projects = [
             "Python",
             "IoT",
             "Analytics",
-            "ETL"
+            "Visualization"
         ],
         "color": "red",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
-                "client": "GreenEnergy Co.",
-                "text": "Helped optimize our energy usage."
+                "client": "GreenEnergy Inc.",
+                "text": "Helped us cut energy costs by 15%."
             }
         ]
     },
     {
-        "title": "HRInsight Recruitment Tracker",
-        "description": "A dashboard for tracking recruitment pipelines, candidate progress, and hiring metrics with automated reporting.",
+        "title": "HRTalent Analytics",
+        "description": "A SQL-based dashboard for analyzing recruitment metrics, candidate performance, and hiring trends with visualizations.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=405",
@@ -851,21 +851,21 @@ const projects = [
             "SQL",
             "Dashboard",
             "HR",
-            "Automation"
+            "Analytics"
         ],
         "color": "orange",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
                 "client": "TalentCorp",
-                "text": "Made hiring decisions more data-driven."
+                "text": "Made our hiring process data-driven."
             }
         ]
     },
     {
-        "title": "BudgetPro Financial Planner",
-        "description": "An Excel-based financial planning tool with automated budgeting, forecasting, and variance analysis features.",
+        "title": "BudgetVariance Tracker",
+        "description": "An Excel-based tool for analyzing budget variances, with automated reporting and trend analysis for financial planning.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=406",
@@ -875,21 +875,21 @@ const projects = [
             "VBA",
             "Excel",
             "Finance",
-            "Automation"
+            "Analytics"
         ],
         "color": "orange",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
-                "client": "Finance Solutions",
-                "text": "Simplified our budgeting process."
+                "client": "FinancePro Ltd.",
+                "text": "Improved our financial oversight."
             }
         ]
     },
     {
-        "title": "SalesInsight Forecasting Tool",
-        "description": "A Python-based sales forecasting tool with predictive analytics and integration with CRM systems for real-time insights.",
+        "title": "CustomerChurn Predictor",
+        "description": "A Python-based tool for predicting customer churn using machine learning, with visualizations of risk factors.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=407",
@@ -897,23 +897,23 @@ const projects = [
         ],
         "tags": [
             "Python",
+            "Machine Learning",
             "Analytics",
-            "CRM",
-            "Forecasting"
+            "CRM"
         ],
         "color": "purple",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
-                "client": "SalesBoost Inc.",
-                "text": "Accurate forecasts improved our planning."
+                "client": "Customer Insights",
+                "text": "Helped reduce churn rates effectively."
             }
         ]
     },
     {
-        "title": "ComplianceTrack Audit System",
-        "description": "A tool for automating compliance audits, with data validation and reporting for regulatory requirements.",
+        "title": "ComplianceAudit Analyzer",
+        "description": "A SQL-based tool for analyzing compliance data, generating audit reports with visualizations of regulatory gaps.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=408",
@@ -921,23 +921,23 @@ const projects = [
         ],
         "tags": [
             "SQL",
-            "Automation",
             "Compliance",
-            "Reporting"
+            "Reporting",
+            "Analytics"
         ],
         "color": "purple",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
                 "client": "AuditPro Ltd.",
-                "text": "Streamlined our compliance process."
+                "text": "Streamlined our compliance reporting."
             }
         ]
     },
     {
-        "title": "PriceScrape Competitor Analyzer",
-        "description": "A web scraping tool for monitoring competitor pricing, with automated data aggregation and visualization in Excel.",
+        "title": "PriceTrend Scraper",
+        "description": "A Python-based tool for scraping and analyzing competitor pricing trends, with Excel-based visualizations.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=409",
@@ -950,18 +950,18 @@ const projects = [
             "Analytics"
         ],
         "color": "green",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
                 "client": "MarketWatch Co.",
-                "text": "Provided critical pricing insights."
+                "text": "Provided actionable pricing insights."
             }
         ]
     },
     {
-        "title": "HealthMonitor IoT Dashboard",
-        "description": "A Flask-based dashboard for monitoring health metrics from IoT devices, with real-time alerts and data visualization.",
+        "title": "HealthMetrics Analyzer",
+        "description": "A Flask-based dashboard for analyzing health metrics from IoT devices, with statistical models for patient trends.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=410",
@@ -971,21 +971,21 @@ const projects = [
             "Flask",
             "IoT",
             "Healthcare",
-            "Dashboard"
+            "Analytics"
         ],
         "color": "yellow",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
                 "client": "HealthTech Solutions",
-                "text": "Improved patient monitoring efficiency."
+                "text": "Enhanced patient data analysis."
             }
         ]
     },
     {
-        "title": "InventorySync Multi-Warehouse",
-        "description": "A tool for synchronizing inventory across multiple warehouses, with real-time updates and discrepancy alerts.",
+        "title": "StockFlow Analyzer",
+        "description": "A SQL-based tool for analyzing inventory turnover rates, with predictive models for optimizing stock levels.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=411",
@@ -993,47 +993,47 @@ const projects = [
         ],
         "tags": [
             "SQL",
-            "Python",
             "Inventory",
-            "Automation"
+            "Analytics",
+            "Forecasting"
         ],
         "color": "red",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
                 "client": "Warehouse Pro",
-                "text": "Unified our multi-warehouse operations."
+                "text": "Improved stock management efficiency."
             }
         ]
     },
     {
-        "title": "RetailAnalytics Sales Dashboard",
-        "description": "A dashboard for analyzing retail sales data, with interactive charts and predictive sales trends using ETL processes.",
+        "title": "RetailSales Dashboard",
+        "description": "A Python-based dashboard for analyzing retail sales data, with visualizations of trends and performance metrics.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=412",
             "https://picsum.photos/1200/900?random=413"
         ],
         "tags": [
-            "ETL",
+            "Python",
             "Dashboard",
             "Retail",
             "Analytics"
         ],
         "color": "red",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
                 "client": "Retail Insights",
-                "text": "Actionable insights for our sales team."
+                "text": "Boosted our sales strategy with insights."
             }
         ]
     },
     {
-        "title": "CustomerFeedback Analyzer",
-        "description": "A tool for analyzing customer feedback from multiple sources, with sentiment analysis and automated reporting.",
+        "title": "FeedbackSentiment Analyzer",
+        "description": "A Python-based tool for analyzing customer feedback using NLP, with sentiment scoring and trend visualizations.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=413",
@@ -1042,11 +1042,11 @@ const projects = [
         "tags": [
             "Python",
             "NLP",
-            "Reporting",
-            "Analytics"
+            "Analytics",
+            "Visualization"
         ],
         "color": "red",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
@@ -1056,8 +1056,8 @@ const projects = [
         ]
     },
     {
-        "title": "ExpenseTrack Corporate Tool",
-        "description": "A VBA-based tool for tracking and categorizing corporate expenses, with automated reporting and budget alerts.",
+        "title": "ExpensePattern Analyzer",
+        "description": "A VBA-based tool for analyzing corporate expense patterns, with visualizations and cost-saving recommendations.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=414",
@@ -1067,21 +1067,21 @@ const projects = [
             "VBA",
             "Excel",
             "Finance",
-            "Reporting"
+            "Analytics"
         ],
         "color": "purple",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
                 "client": "Corporate Finance Ltd.",
-                "text": "Simplified expense tracking for our team."
+                "text": "Helped optimize expense allocation."
             }
         ]
     },
     {
-        "title": "SocialMedia Sentiment Tracker",
-        "description": "A tool for scraping and analyzing social media sentiment, with real-time dashboards and trend reporting.",
+        "title": "SocialMedia Insights Tool",
+        "description": "A Python-based tool for analyzing social media engagement metrics, with visualizations of audience trends.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=415",
@@ -1090,22 +1090,22 @@ const projects = [
         "tags": [
             "Python",
             "Scraping",
-            "NLP",
-            "Dashboard"
+            "Analytics",
+            "Social Media"
         ],
         "color": "green",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
                 "client": "BrandMonitor Inc.",
-                "text": "Enhanced our social media strategy."
+                "text": "Improved our social media strategy."
             }
         ]
     },
     {
-        "title": "TaskAutomate Workflow Manager",
-        "description": "A Python-based workflow automation tool for managing repetitive tasks, with integration to project management systems.",
+        "title": "MarketTrend Forecaster",
+        "description": "A Python-based tool for analyzing market trends using statistical models, with Excel-based visualizations.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=416",
@@ -1113,36 +1113,12 @@ const projects = [
         ],
         "tags": [
             "Python",
-            "Automation",
-            "Workflow",
-            "Integration"
+            "Excel",
+            "Analytics",
+            "Forecasting"
         ],
         "color": "orange",
-        "majorCategory": "Data Automation",
-        "market": "Upwork",
-        "comments": [
-            {
-                "client": "Workflow Solutions",
-                "text": "Automated our routine tasks effectively."
-            }
-        ]
-    },
-    {
-        "title": "MarketTrend Analyzer",
-        "description": "A tool for scraping and analyzing market trends from multiple sources, with automated visualization in Excel dashboards.",
-        "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
-        "images": [
-            "https://picsum.photos/1200/900?random=417",
-            "https://picsum.photos/1200/900?random=418"
-        ],
-        "tags": [
-            "Python",
-            "Scraping",
-            "Excel",
-            "Analytics"
-        ],
-        "color": "purple",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
@@ -1152,10 +1128,12 @@ const projects = [
         ]
     },
     {
-        "title": "EmployeeEngage Survey Tool",
-        "description": "A Flask-based tool for conducting employee engagement surveys, with automated analysis and reporting features.",
+        "title": "EmployeeEngage Analytics",
+        "description": "A Flask-based tool for analyzing employee engagement survey data, with visualizations of satisfaction trends.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
+            "https://picsum.photos/1200/900?random=417",
+            "https imgs": [
             "https://picsum.photos/1200/900?random=418",
             "https://picsum.photos/1200/900?random=419"
         ],
@@ -1166,36 +1144,60 @@ const projects = [
             "Analytics"
         ],
         "color": "orange",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
                 "client": "HR Analytics Ltd.",
-                "text": "Improved our employee engagement insights."
+                "text": "Enhanced our employee engagement insights."
             }
         ]
     },
     {
-        "title": "DataClean Automation Suite",
-        "description": "A Python and VBA-based suite for automating data cleaning, validation, and structuring for large datasets.",
+        "title": "SupplyChain Analytics",
+        "description": "A SQL-based tool for analyzing supply chain performance metrics, with dashboards for bottleneck identification.",
         "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
         "images": [
             "https://picsum.photos/1200/900?random=419",
             "https://picsum.photos/1200/900?random=420"
         ],
         "tags": [
-            "Python",
-            "VBA",
-            "Data Cleaning",
-            "Automation"
+            "SQL",
+            "Supply Chain",
+            "Analytics",
+            "Dashboard"
         ],
         "color": "yellow",
-        "majorCategory": "Data Automation",
+        "majorCategory": "Data Analysis",
+        "market": "Upwork",
+        "comments": [
+            {
+                "client": "Logistics Insights",
+                "text": "Optimized our supply chain operations."
+            }
+        ]
+    },
+    {
+        "title": "DataQuality Validator",
+        "description": "A Python and VBA-based tool for validating and analyzing data quality, with reports on inconsistencies and errors.",
+        "videoUrl": "https://www.youtube.com/embed/3CIxz9h2wHA",
+        "images": [
+            "https://picsum.photos/1200/900?random=420",
+            "https://picsum.photos/1200/900?random=421"
+        ],
+        "tags": [
+            "Python",
+            "VBA",
+            "Data Quality",
+            "Analytics"
+        ],
+        "color": "yellow",
+        "majorCategory": "Data Analysis",
         "market": "Upwork",
         "comments": [
             {
                 "client": "DataPro Solutions",
-                "text": "Streamlined our data preparation process."
+                "text": "Improved our data quality significantly."
             }
         ]
     }
