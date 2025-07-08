@@ -1,898 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .image-gallery {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .image-gallery-inner {
-            display: inline-flex;
-            animation: auto-scroll 20s linear infinite;
-        }
-
-        .image-gallery-inner.paused {
-            animation-play-state: paused;
-        }
-
-        .gallery-image {
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-image:hover {
-            transform: scale(1.05);
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 6px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            font-size: 0.75rem;
-            transition: background 0.2s ease;
-        }
-
-        .carousel-btn:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .carousel-btn.left {
-            left: 5px;
-        }
-
-        .carousel-btn.right {
-            right: 5px;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        #image-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            flex-direction: column;
-            overflow-y: auto;
-        }
-
-        #image-popup img#popup-image {
-            width: 100vw;
-            max-height: 80vh;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        #image-popup .dismiss-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #dc2626;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            transition: background 0.2s ease;
-            z-index: 1100;
-        }
-
-        #image-popup .dismiss-btn:hover {
-            background: #b91c1c;
-        }
-
-        .thumbnail-gallery {
-            position: relative;
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            max-width: 90vw;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .thumbnail {
-            width: 80px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-            border: 2px solid transparent;
-        }
-
-        .thumbnail:hover {
-            transform: scale(1.1);
-            opacity: 0.9;
-        }
-
-        .thumbnail.active {
-            border: 2px solid #3b82f6;
-            opacity: 1;
-        }
-
-        .comment-hidden {
-            display: none;
-        }
-
-        .comment {
-            background: #f9fafb;
-            border-left: 3px solid;
-            border-color: inherit;
-            padding: 8px;
-            border-radius: 4px;
-            margin-bottom: 4px;
-            transition: background 0.3s ease;
-            font-size: 0.75rem;
-            font-style: italic;
-        }
-
-        .comment:hover {
-            background: #e5e7eb;
-        }
-
-        .title-tags-container {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 0.75rem;
-        }
-
-        #main {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: linear-gradient(to right, #225124, #10b981, #046059);
-            color: white;
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        #main .left-section {
-            flex: 1;
-            max-width: 50%;
-        }
-
-        #main .right-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 0.75rem;
-        }
-
-        .pagination-link {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            background: #f3f4f6;
-            color: #1f2937;
-            border: 1px solid #93c5fd;
-            font-size: 0.75rem;
-        }
-
-        .pagination-link:hover {
-            background: #bfdbfe;
-            transform: scale(1.05);
-        }
-
-        .pagination-link.active {
-            background: #ffffff;
-            color: #1e3a8a;
-            border-color: #ffffff;
-            transform: scale(1);
-        }
-
-        .social-icon {
-            width: 56px;
-            height: 56px;
-            fill: #ffffff;
-            transition: fill 0.2s ease, transform 0.2s ease;
-        }
-
-        .social-icon:hover {
-            fill: #bfdbfe;
-            transform: scale(1.1);
-        }
-
-        #add-project-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            max-width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-content input, .modal-content textarea, .modal-content select {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 0.5rem;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
-        }
-
-        .modal-content button {
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .error-message {
-            color: #dc2626;
-            font-size: 0.75rem;
-            margin-bottom: 0.5rem;
-            display: none;
-        }
-
-        @keyframes auto-scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            .project-card {
-                padding: 1rem;
-            }
-
-            .image-gallery-inner img {
-                width: 120px;
-                height: 80px;
-            }
-
-            .carousel-btn {
-                padding: 4px;
-                font-size: 0.6rem;
-            }
-
-            h1 {
-                font-size: 2.25rem;
-            }
-
-            h2 {
-                font-size: 1.25rem;
-            }
-
-            p, a, button {
-                font-size: 0.75rem;
-            }
-
-            iframe {
-                height: 160px;
-            }
-
-            .comment {
-                font-size: 0.7rem;
-                padding: 6px;
-                margin-bottom: 3px;
-            }
-
-            .toggle-comments {
-                font-size: 0.7rem;
-            }
-
-            #image-popup .dismiss-btn {
-                padding: 6px 12px;
-                font-size: 0.75rem;
-            }
-
-            #image-popup img#popup-image {
-                max-height: 70vh;
-            }
-
-            .thumbnail {
-                width: 60px;
-                height: 40px;
-            }
-
-            .pagination-link {
-                font-size: 0.65rem;
-                padding: 0.2rem 0.6rem;
-            }
-
-            #main {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            #main .left-section, #main .right-section {
-                max-width: 100%;
-                align-items: center;
-            }
-
-            #main .right-section {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .social-icon {
-                width: 40px;
-                height: 40px;
-            }
-
-            .modal-content {
-                padding: 1rem;
-                max-width: 95%;
-            }
-        }
-
-        @media (min-width: 641px) and (max-width: 1024px) {
-            .container {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
-
-            .project-card {
-                padding: 1.25rem;
-            }
-
-            .image-gallery-inner img {
-                width: 140px;
-                height: 90px;
-            }
-
-            .carousel-btn {
-                padding: 5px;
-                font-size: 0.7rem;
-            }
-
-            h1 {
-                font-size: 3rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            p, a, button {
-                font-size: 0.875rem;
-            }
-
-            iframe {
-                height: 180px;
-            }
-
-            .comment {
-                font-size: 0.75rem;
-                padding: 6px;
-                margin-bottom: 3px;
-            }
-
-            .toggle-comments {
-                font-size: 0.75rem;
-            }
-
-            #image-popup .dismiss-btn {
-                padding: 7px 14px;
-                font-size: 0.875rem;
-            }
-
-            #image-popup img#popup-image {
-                max-height: 75vh;
-            }
-
-            .thumbnail {
-                width: 70px;
-                height: 45px;
-            }
-
-            .pagination-link {
-                font-size: 0.7rem;
-                padding: 0.25rem 0.75rem;
-            }
-
-            #main .left-section {
-                max-width: 60%;
-            }
-
-            #main .right-section {
-                flex-direction: column;
-                align-items: flex-end;
-            }
-
-            .social-icon {
-                width: 48px;
-                height: 48px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio</title>
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Dynamically Load External Raw Assets -->
+  <script>
+    async function loadExternalAssets() {
+      try {
+        // 1. Load styles.css from GitHub and inject into head
+        const cssResp = await fetch('https://raw.githubusercontent.com/binidrees0492/PortfolioResources/main/styles.css');
+        const cssText = await cssResp.text();
+        const style = document.createElement('style');
+        style.textContent = cssText;
+        document.head.appendChild(style);
+
+        // 2. Load and execute projects.js
+        const projectsResp = await fetch('https://raw.githubusercontent.com/binidrees0492/PortfolioResources/main/projects.js');
+        const projectsText = await projectsResp.text();
+        const scriptProjects = document.createElement('script');
+        scriptProjects.textContent = projectsText;
+        document.head.appendChild(scriptProjects);
+
+        // 3. Load and execute app.js
+        const appResp = await fetch('https://raw.githubusercontent.com/binidrees0492/PortfolioResources/main/app.js');
+        const appText = await appResp.text();
+        const scriptApp = document.createElement('script');
+        scriptApp.textContent = appText;
+        document.body.appendChild(scriptApp);
+
+      } catch (err) {
+        console.error('Asset loading error:', err);
+        document.body.innerHTML = `
+          <main class="text-center p-6 text-red-600">
+            <h2 class="text-2xl font-bold mb-4">⚠️ Failed to load portfolio assets</h2>
+            <p>Please check your internet connection or the GitHub URLs.</p>
+          </main>`;
+      }
+    }
+
+    // Start loading resources
+    loadExternalAssets();
+  </script>
 </head>
 <body class="bg-blue-50 font-sans">
-<nav id="main" >
 
-    <table class="w-full">
-        <tr>
-            <td>
-                <h2 class="text-3xl font-bold mb-1">M ISHTIAQUE KHAN</h2>
-                <p class="text-md">Includes developed & planned Projects</p>
-            </td>
-            <td>
-                <div class="flex gap-4 justify-end">
-                    <!-- Twitter -->
-                    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-                        <svg class="w-6 h-6 text-grey-500 hover:text-orange-700" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                    </a>
-                    <!-- LinkedIn -->
-                    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-                        <svg class="w-6 h-6 text-grey-500 hover:text-orange-700" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/>
-                        </svg>
-                    </a>
-                    <!-- GitHub -->
-                    <a href="https://github.com" target="_blank" aria-label="GitHub">
-                        <svg class="w-6 h-6 text-gray-500 hover:text-orange-700" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 17.69 3.633 17.264 3.633 17.264c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                        </svg>
-                    </a>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" class="py-4">
-                <div id="pagination-links" class="flex flex-wrap gap-2 align-items-center">
-                    <!-- Pagination links injected here -->
-                </div>
-            </td>
-        </tr>
-    </table>
-</nav>
+  <!-- Navigation -->
+  <nav id="main" class="bg-gradient-to-r from-green-900 via-emerald-500 to-teal-800 text-white p-4 shadow sticky top-0 z-50">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div>
+        <h2 class="text-3xl font-bold">M ISHTIAQUE KHAN</h2>
+        <p class="text-sm">Includes developed & planned Projects</p>
+      </div>
+      <div class="flex gap-4">
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="hover:text-orange-500">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="hover:text-orange-500">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/>
+          </svg>
+        </a>
+        <a href="https://github.com" target="_blank" aria-label="GitHub" class="hover:text-orange-500">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 
+              0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 
+              17.69 3.633 17.264 3.633 17.264c-1.087-.744.084-.729.084-.729 
+              1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 
+              3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 
+              0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 
+              0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 
+              1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 
+              3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 
+              1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 
+              5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 
+              3.286 0 .315.21.69.825.57C20.565 22.092 24 
+              17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </a>
+      </div>
+    </div>
 
-<main class="container mx-auto py-6 px-4">
+    <!-- Dynamic Pagination Buttons -->
+    <div id="pagination-links" class="flex flex-wrap gap-2 mt-4">
+      <!-- Tags will be injected here -->
+    </div>
+  </nav>
+
+  <!-- Project Grid Container -->
+  <main class="container mx-auto py-6 px-4">
     <button id="add-project-btn"
             class="mb-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">Add New Project
     </button>
     <section id="projects" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Projects will be injected here -->
+      <!-- Projects will be injected here -->
     </section>
-</main>
+  </main>
 
-<footer class="bg-gray-800 text-white text-center py-4">
-    <p class="text-sm">© 2025 M Ishtiauqe Khan. All rights reserved.</p>
-</footer>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-4">
+    <p class="text-sm">© 2025 M Ishtiaque Khan. All rights reserved.</p>
+  </footer>
 
-<div id="image-popup">
+  <!-- Modal Popup for Image -->
+  <div id="image-popup">
     <img id="popup-image" src="" alt="Popup Image">
-    <div class="thumbnail-gallery" id="thumbnail-gallery">
-        <!-- Thumbnails will be injected here -->
-    </div>
+    <div class="thumbnail-gallery" id="thumbnail-gallery"></div>
     <button class="dismiss-btn">Close</button>
-</div>
+  </div>
 
-<div id="add-project-modal">
+  <!-- Modal for Add Project -->
+  <div id="add-project-modal">
     <div class="modal-content">
-        <h2 class="text-xl font-bold mb-4">Add New Project</h2>
-        <p id="form-error" class="error-message">Please fill in all required fields correctly.</p>
-        <p class="text-sm text-gray-600 mb-4">After submission, download the updated <code>projects.js</code> file and
-            replace the existing one to save changes permanently.</p>
-        <input id="project-title" type="text" placeholder="Project Title" required>
-        <textarea id="project-description" placeholder="Description" rows="4" required></textarea>
-        <input id="project-video-url" type="url" placeholder="Video URL (e.g., https://www.youtube.com/embed/...)">
-        <input id="project-images" type="text" placeholder="Image URLs (comma-separated)">
-        <input id="project-tags" type="text" placeholder="Tags (comma-separated)">
-        <select id="project-color" required>
-            <option value="">Select Color</option>
-            <option value="blue">Blue</option>
-            <option value="green">Green</option>
-            <option value="red">Red</option>
-            <option value="purple">Purple</option>
-        </select>
-        <input id="project-major-category" type="text" placeholder="Major Category" required>
-        <input id="project-market" type="text" placeholder="Market" required>
-        <div id="comments-container">
-            <div class="comment-entry mb-2">
-                <input type="text" class="comment-client" placeholder="Client Name">
-                <input type="text" class="comment-text" placeholder="Comment Text">
-            </div>
+      <h2 class="text-xl font-bold mb-4">Add New Project</h2>
+      <p id="form-error" class="error-message">Please fill in all required fields correctly.</p>
+      <p class="text-sm text-gray-600 mb-4">After submission, download the updated <code>projects.js</code> file and
+        replace the existing one to save changes permanently.</p>
+      <input id="project-title" type="text" placeholder="Project Title" required>
+      <textarea id="project-description" placeholder="Description" rows="4" required></textarea>
+      <input id="project-video-url" type="url" placeholder="Video URL (e.g., https://www.youtube.com/embed/...)">
+      <input id="project-images" type="text" placeholder="Image URLs (comma-separated)">
+      <input id="project-tags" type="text" placeholder="Tags (comma-separated)">
+      <select id="project-color" required>
+        <option value="">Select Color</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="red">Red</option>
+        <option value="purple">Purple</option>
+      </select>
+      <input id="project-major-category" type="text" placeholder="Major Category" required>
+      <input id="project-market" type="text" placeholder="Market" required>
+      <div id="comments-container">
+        <div class="comment-entry mb-2">
+          <input type="text" class="comment-client" placeholder="Client Name">
+          <input type="text" class="comment-text" placeholder="Comment Text">
         </div>
-        <button id="add-comment-btn" class="bg-gray-600 text-white mb-2">Add Another Comment</button>
-        <div class="flex gap-2">
-            <button id="submit-project-btn" class="bg-blue-600 text-white hover:bg-blue-700">Submit</button>
-            <button id="close-modal-btn" class="bg-gray-600 text-white hover:bg-gray-700">Cancel</button>
-        </div>
+      </div>
+      <button id="add-comment-btn" class="bg-gray-600 text-white mb-2">Add Another Comment</button>
+      <div class="flex gap-2">
+        <button id="submit-project-btn" class="bg-blue-600 text-white hover:bg-blue-700">Submit</button>
+        <button id="close-modal-btn" class="bg-gray-600 text-white hover:bg-gray-700">Cancel</button>
+      </div>
     </div>
-</div>
+  </div>
 </body>
 </html>
-<script src='https://raw.githubusercontent.com/binidrees0492/PortfolioResources/main/projects.js' defer></script>
-<script>
-
-document.addEventListener('DOMContentLoaded', () => {
-const projectsContainer = document.getElementById('projects');
-const paginationLinksContainer = document.getElementById('pagination-links');
-const popup = document.getElementById('image-popup');
-const popupImage = document.getElementById('popup-image');
-const thumbnailGallery = document.getElementById('thumbnail-gallery');
-const dismissBtn = document.querySelector('#image-popup .dismiss-btn');
-const addProjectBtn = document.getElementById('add-project-btn');
-const addProjectModal = document.getElementById('add-project-modal');
-const closeModalBtn = document.getElementById('close-modal-btn');
-const submitProjectBtn = document.getElementById('submit-project-btn');
-const addCommentBtn = document.getElementById('add-comment-btn');
-const commentsContainer = document.getElementById('comments-container');
-const formError = document.getElementById('form-error');
-
-// Check if projects is defined and is an array
-if (!Array.isArray(projects)) {
-    projectsContainer.innerHTML = '<p class="text-center text-red-600 col-span-full">Error: Projects data is not available or invalid.</p>';
-    paginationLinksContainer.innerHTML = '<p class="text-center text-red-600">Unable to load tags.</p>';
-    return;
-}
-
-// Filter functionality
-let currentTag = null;
-
-function updateNavbars() {
-    // Generate pagination links from tags
-    const allTags = ['All', ...new Set(projects.flatMap(p => p.tags))];
-    paginationLinksContainer.innerHTML = allTags.map(tag => `
-        <button class="pagination-link ${tag === (currentTag || 'All') ? 'active' : ''}" data-tag="${tag}">${tag}</button>
-    `).join('');
-}
-
-function updateActiveButton(container, className, value) {
-    container.querySelectorAll(`.${className}`).forEach(btn => {
-        btn.classList.toggle('active', btn.dataset[className.split('-')[0]] === value);
-    });
-}
-
-paginationLinksContainer.addEventListener('click', (e) => {
-    const target = e.target.closest('.pagination-link');
-    if (target) {
-        currentTag = target.dataset.tag === 'All' ? null : target.dataset.tag;
-        updateActiveButton(paginationLinksContainer, 'pagination-link', currentTag || 'All');
-        renderProjects();
-    }
-});
-
-function renderProjects() {
-    projectsContainer.innerHTML = '';
-    if (!Array.isArray(projects)) {
-        projectsContainer.innerHTML = '<p class="text-center text-red-600 col-span-full">Error: Projects data is not available or invalid.</p>';
-        return;
-    }
-    const filteredProjects = projects.filter(p => {
-        return currentTag === null || p.tags.includes(currentTag);
-    });
-    if (filteredProjects.length === 0) {
-        projectsContainer.innerHTML = '<p class="text-center text-gray-600 col-span-full">No projects match the selected tag.</p>';
-        return;
-    }
-    filteredProjects.forEach((project, index) => {
-        const projectCard = document.createElement('div');
-        projectCard.className = 'project-card bg-white rounded-lg shadow-lg p-4 fade-in';
-        projectCard.style.animationDelay = `${index * 0.1}s`;
-        projectCard.style.borderLeftColor = project.color || '#000';
-
-        const commentLimit = window.innerWidth <= 640 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
-
-        projectCard.innerHTML = `
-            <div class="title-tags-container">
-                <h2 class="text-xl font-bold text-${project.color || 'blue'}-600">${project.title}</h2>
-                <div class="flex flex-wrap gap-1">
-                    ${project.tags.slice(0, 5).map(tag => `
-                        <span class="bg-${project.color || 'blue'}-100 text-${project.color || 'blue'}-800 text-xs px-2 py-0.5 rounded-full">${tag}</span>
-                    `).join('')}
-                </div>
-            </div>
-            <p class="text-gray-600 mb-3 text-sm"><strong>Market:</strong> ${project.market}</p>
-            <div class="w-full mb-3">
-                <iframe src="${project.videoUrl}" frameborder="0" allowfullscreen class="w-full h-56 rounded lazy"></iframe>
-            </div>
-            <div class="image-gallery relative mb-3">
-                <button class="carousel-btn left">←</button>
-                <div class="image-gallery-inner flex space-x-3">
-                    ${project.images.map(img => `
-                        <img src="${img}" alt="${project.title}" class="gallery-image w-40 h-24 object-cover rounded cursor-pointer lazy" data-project-id="${index}">
-                    `).join('')}
-                    ${project.images.map(img => `
-                        <img src="${img}" alt="${project.title}" class="gallery-image w-40 h-24 object-cover rounded cursor-pointer lazy" data-project-id="${index}">
-                    `).join('')}
-                </div>
-                <button class="carousel-btn right">→</button>
-            </div>
-            <p class="text-gray-600 mb-3 text-sm">${project.description}</p>
-            <div class="comments mb-3">
-                <h3 class="text-base font-semibold mb-1.5">Client Comments</h3>
-                <div class="comments-list">
-                    ${project.comments.map((comment, idx) => `
-                        <p class="${idx >= commentLimit ? 'comment-hidden' : ''} comment text-gray-600 mb-1.5 border-${project.color || 'blue'}-600"><strong>${comment.client}</strong>: ${comment.text}</p>
-                    `).join('')}
-                </div>
-                ${project.comments.length > commentLimit ? `<button class="toggle-comments text-${project.color || 'blue'}-600 hover:text-${project.color || 'blue'}-800 text-xs">Show ${project.comments.length - commentLimit} more</button>` : ''}
-            </div>
-            <a href="${project.videoUrl}" target="_blank" class="inline-block bg-${project.color || 'blue'}-600 text-white px-3 py-1.5 rounded text-sm hover:bg-${project.color || 'blue'}-700 transition-colors">View Project</a>
-        `;
-
-        projectsContainer.appendChild(projectCard);
-
-        // Image carousel
-        const imageGallery = projectCard.querySelector('.image-gallery-inner');
-        const imageLeftBtn = projectCard.querySelector('.image-gallery .carousel-btn.left');
-        const imageRightBtn = projectCard.querySelector('.image-gallery .carousel-btn.right');
-        let imageCurrentIndex = 0;
-        const imageWidth = 172;
-        const imageMaxIndex = project.images.length - Math.floor(projectCard.offsetWidth / imageWidth);
-
-        imageGallery.addEventListener('mouseenter', () => imageGallery.classList.add('paused'), {passive: true});
-        imageGallery.addEventListener('mouseleave', () => imageGallery.classList.remove('paused'), {passive: true});
-
-        imageLeftBtn.addEventListener('click', {
-            handleEvent: () => {
-                if (imageCurrentIndex > 0) {
-                    imageCurrentIndex--;
-                    imageGallery.style.transition = 'transform 0.5s ease';
-                    imageGallery.style.transform = `translateX(-${imageCurrentIndex * imageWidth}px)`;
-                } else {
-                    imageCurrentIndex = project.images.length;
-                    imageGallery.style.transform = `translateX(-${imageCurrentIndex * imageWidth}px)`;
-                    requestAnimationFrame(() => {
-                        imageGallery.style.transition = 'transform 0.5s ease';
-                    });
-                }
-            }, passive: true
-        });
-
-        imageRightBtn.addEventListener('click', {
-            handleEvent: () => {
-                if (imageCurrentIndex < imageMaxIndex) {
-                    imageCurrentIndex++;
-                    imageGallery.style.transition = 'transform 0.5s ease';
-                    imageGallery.style.transform = `translateX(-${imageCurrentIndex * imageWidth}px)`;
-                } else {
-                    imageCurrentIndex = 0;
-                    imageGallery.style.transform = `translateX(0)`;
-                    requestAnimationFrame(() => {
-                        imageGallery.style.transition = 'transform 0.5s ease';
-                    });
-                }
-            }, passive: true
-        });
-
-        imageGallery.addEventListener('animationiteration', () => {
-            imageCurrentIndex = 0;
-            imageGallery.style.transform = 'translateX(0)';
-            requestAnimationFrame(() => {
-                imageGallery.style.transition = 'transform 0.5s ease';
-            });
-        }, {passive: true});
-
-        // Image popup with thumbnails
-        projectCard.querySelectorAll('.gallery-image').forEach((img, imgIndex) => {
-            img.addEventListener('click', () => {
-                popupImage.src = img.src;
-                popup.style.display = 'flex';
-                thumbnailGallery.innerHTML = project.images.map((thumb, thumbIndex) => `
-                    <img src="${thumb}" alt="${project.title}" class="thumbnail ${thumbIndex === imgIndex ? 'active' : ''}" data-img-index="${thumbIndex}">
-                `).join('');
-                thumbnailGallery.dataset.projectId = index;
-            });
-        });
-
-        // Toggle comments
-        const toggleBtn = projectCard.querySelector('.toggle-comments');
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', () => {
-                const hiddenComments = projectCard.querySelectorAll('.comment-hidden');
-                const isExpanded = toggleBtn.textContent.includes('less');
-                hiddenComments.forEach(comment => {
-                    comment.classList.toggle('comment-hidden', isExpanded);
-                });
-                toggleBtn.textContent = isExpanded ? `Show ${project.comments.length - commentLimit} more` : `Show less`;
-            });
-        }
-    });
-    // Re-observe fade-in elements after rendering
-    document.querySelectorAll('.fade-in').forEach(element => observer.observe(element));
-}
-
-// Thumbnail click handler
-thumbnailGallery.addEventListener('click', (e) => {
-    const thumbnail = e.target.closest('.thumbnail');
-    if (thumbnail) {
-        const projectId = parseInt(thumbnailGallery.dataset.projectId);
-        const imgIndex = parseInt(thumbnail.dataset.imgIndex);
-        popupImage.src = projects[projectId].images[imgIndex];
-        thumbnailGallery.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
-        thumbnail.classList.add('active');
-    }
-});
-
-// Lazy load images
-const lazyImages = document.querySelectorAll('img.lazy');
-const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.src;
-            img.classList.remove('lazy');
-            observer.unobserve(img);
-        }
-    });
-}, {threshold: 0.1});
-lazyImages.forEach(img => imageObserver.observe(img));
-
-// Fade-in animation
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, {threshold: 0.1});
-
-// Modal handling
-addProjectBtn.addEventListener('click', () => {
-    addProjectModal.style.display = 'flex';
-    formError.style.display = 'none';
-    document.getElementById('project-title').value = '';
-    document.getElementById('project-description').value = '';
-    document.getElementById('project-video-url').value = '';
-    document.getElementById('project-images').value = '';
-    document.getElementById('project-tags').value = '';
-    document.getElementById('project-color').value = '';
-    document.getElementById('project-major-category').value = '';
-    document.getElementById('project-market').value = '';
-    commentsContainer.innerHTML = `
-        <div class="comment-entry mb-2">
-            <input type="text" class="comment-client" placeholder="Client Name">
-            <input type="text" class="comment-text" placeholder="Comment Text">
-        </div>
-    `;
-});
-
-closeModalBtn.addEventListener('click', () => {
-    addProjectModal.style.display = 'none';
-});
-
-addCommentBtn.addEventListener('click', () => {
-    const newCommentEntry = document.createElement('div');
-    newCommentEntry.className = 'comment-entry mb-2';
-    newCommentEntry.innerHTML = `
-        <input type="text" class="comment-client" placeholder="Client Name">
-        <input type="text" class="comment-text" placeholder="Comment Text">
-    `;
-    commentsContainer.appendChild(newCommentEntry);
-});
-
-submitProjectBtn.addEventListener('click', () => {
-    const title = document.getElementById('project-title').value.trim();
-    const description = document.getElementById('project-description').value.trim();
-    const videoUrl = document.getElementById('project-video-url').value.trim();
-    const images = document.getElementById('project-images').value.split(',').map(url => url.trim()).filter(url => url);
-    const tags = document.getElementById('project-tags').value.split(',').map(tag => tag.trim()).filter(tag => tag);
-    const color = document.getElementById('project-color').value;
-    const majorCategory = document.getElementById('project-major-category').value.trim();
-    const market = document.getElementById('project-market').value.trim();
-    const comments = Array.from(commentsContainer.querySelectorAll('.comment-entry')).map(entry => ({
-        client: entry.querySelector('.comment-client').value.trim(),
-        text: entry.querySelector('.comment-text').value.trim()
-    })).filter(comment => comment.client && comment.text);
-
-    // Validation
-    if (!title || !description || !color || !majorCategory || !market) {
-        formError.textContent = 'Please fill in all required fields correctly.';
-        formError.style.display = 'block';
-        return;
-    }
-    if (videoUrl && !/^(https?:\/\/)/.test(videoUrl)) {
-        formError.textContent = 'Please enter a valid URL for Video URL';
-        formError.style.display = 'block';
-        return;
-    }
-
-    // Add new project
-    const newProject = {
-        title,
-        description,
-        videoUrl: videoUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-        images: images.length ? images : ['https://picsum.photos/1200/900?random=1'],
-        tags: tags.length ? tags : ['General'],
-        color: color || 'blue',
-        majorCategory: majorCategory || 'General',
-        market: market || 'Unknown',
-        comments: comments.length ? comments : [{client: 'Anonymous', text: 'No comments yet.'}]
-    };
-    projects.push(newProject);
-
-    // Generate and download updated projects.js
-    const fileContent = `const projects = ${JSON.stringify(projects, null, 2)};`;
-    const blob = new Blob([fileContent], {type: 'application/javascript'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'projects.js';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
-    // Close modal and re-render
-    addProjectModal.style.display = 'none';
-    updateNavbars();
-    renderProjects();
-});
-
-// Initial render
-updateNavbars();
-renderProjects();
-
-// Close popup
-dismissBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
-    thumbnailGallery.innerHTML = '';
-});
-
-// Update comment visibility on resize
-window.addEventListener('resize', () => renderProjects(), {passive: true});
-});
-
-</script>
