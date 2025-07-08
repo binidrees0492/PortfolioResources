@@ -10,42 +10,35 @@
 
   <!-- Dynamically Load External Raw Assets -->
   <script>
-    async function loadExternalAssets() {
-      try {
-        // 1. Load styles.css from GitHub and inject into head
-        const cssResp = await fetch('https://raw.githubusercontent.com/binidrees0492/PortfolioResources/main/styles.css');
-        const cssText = await cssResp.text();
-        const style = document.createElement('style');
-        style.textContent = cssText;
-        document.head.appendChild(style);
+(async () => {
+  try {
+    // Load styles.css
+    const css = await fetch("https://raw.githubusercontent.com/binidrees0492/PortfolioResources/main/styles.css");
+    const cssText = await css.text();
+    const style = document.createElement("style");
+    style.textContent = cssText;
+    document.head.appendChild(style);
 
-        // 2. Load and execute projects.js
-        const projectsResp = await fetch('https://raw.githubusercontent.com/binidrees0492/PortfolioResources/main/projects.js');
-        const projectsText = await projectsResp.text();
-        const scriptProjects = document.createElement('script');
-        scriptProjects.textContent = projectsText;
-        document.head.appendChild(scriptProjects);
+    // Load and execute projects.js
+    const proj = await fetch("https://raw.githubusercontent.com/binidrees0492/PortfolioResources/main/projects.js");
+    const projText = await proj.text();
+    const projScript = document.createElement("script");
+    projScript.textContent = projText;
+    document.head.appendChild(projScript);
 
-        // 3. Load and execute app.js
-        const appResp = await fetch('https://raw.githubusercontent.com/binidrees0492/PortfolioResources/main/app.js');
-        const appText = await appResp.text();
-        const scriptApp = document.createElement('script');
-        scriptApp.textContent = appText;
-        document.body.appendChild(scriptApp);
+    // Load and execute app.js
+    const app = await fetch("https://raw.githubusercontent.com/binidrees0492/PortfolioResources/main/app.js");
+    const appText = await app.text();
+    const appScript = document.createElement("script");
+    appScript.textContent = appText;
+    document.body.appendChild(appScript);
+  } catch (e) {
+    console.error("Failed to load assets", e);
+    document.body.innerHTML = `<h2 style="color:red;">⚠ Failed to load portfolio assets.</h2>`;
+  }
+})();
+</script>
 
-      } catch (err) {
-        console.error('Asset loading error:', err);
-        document.body.innerHTML = `
-          <main class="text-center p-6 text-red-600">
-            <h2 class="text-2xl font-bold mb-4">⚠️ Failed to load portfolio assets</h2>
-            <p>Please check your internet connection or the GitHub URLs.</p>
-          </main>`;
-      }
-    }
-
-    // Start loading resources
-    loadExternalAssets();
-  </script>
 </head>
 <body class="bg-blue-50 font-sans">
 
